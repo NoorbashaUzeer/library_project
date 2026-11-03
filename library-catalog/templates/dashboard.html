@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Librarian Dashboard</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <header class="topbar">
+    <a href="/" class="brand">The Stacks<span>Librarian Dashboard</span></a>
+    <nav><span class="muted">Hi, {{ username }}</span> <a href="/">Catalog</a> <a href="/logout">Logout</a></nav>
+  </header>
+
+  <main class="container dash">
+    <form id="bookForm" class="panel">
+      <h2 id="formTitle">Add a new book</h2>
+      <input type="hidden" name="id">
+      <label>Title* <input name="title" required></label>
+      <label>Author* <input name="author" required></label>
+      <div class="row">
+        <label>Category* <input name="category" list="cats" required></label>
+        <label>Year <input name="year" type="number"></label>
+        <label>Pages <input name="pages" type="number" min="1"></label>
+      </div>
+      <datalist id="cats"></datalist>
+      <label>Description <textarea name="description" rows="3"></textarea></label>
+      <div class="row">
+        <label>Total copies <input name="total_copies" type="number" min="0" value="1" required></label>
+        <label>On the shelf <input name="available_copies" type="number" min="0" value="1" required></label>
+      </div>
+      <label>E-book URL (optional) <input name="ebook_url" type="url" placeholder="https://…"></label>
+      <p id="msg" class="small"></p>
+      <div class="actions">
+        <button class="btn primary" type="submit">Save book</button>
+        <button class="btn" type="button" id="resetBtn">Clear</button>
+      </div>
+    </form>
+
+    <section class="panel">
+      <h2>All books</h2>
+      <table>
+        <thead><tr><th>Title</th><th>Category</th><th>Availability</th><th></th></tr></thead>
+        <tbody id="rows"></tbody>
+      </table>
+    </section>
+  </main>
+
+  <script src="{{ url_for('static', filename='dashboard.js') }}"></script>
+</body>
+</html>

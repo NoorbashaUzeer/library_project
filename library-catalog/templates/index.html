@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>College Library Catalog</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <header class="topbar">
+    <a href="/" class="brand">The KITS <span>College Library Catalog</span></a>
+    <nav>
+      {% if logged_in %}
+        <a href="/dashboard">Dashboard</a> <a href="/logout">Logout</a>
+      {% else %}
+        <a href="/login">Librarian Login</a>
+      {% endif %}
+    </nav>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <h1>What's on the shelf today?</h1>
+      <p>Browse the physical collection, check copies in stock, and open e-books when available.</p>
+      <input id="search" type="search" placeholder="Search by title or author…" autocomplete="off">
+    </section>
+
+    <div id="tabs" class="tabs"></div>
+    <p id="count" class="muted"></p>
+    <div id="grid" class="grid"></div>
+  </main>
+
+  <div id="modal" class="modal hidden" role="dialog" aria-modal="true">
+    <div class="modal-card">
+      <button class="close" id="closeModal" aria-label="Close">&times;</button>
+      <div id="detail"></div>
+    </div>
+  </div>
+
+  <script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>

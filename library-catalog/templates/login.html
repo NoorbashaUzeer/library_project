@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Librarian Login</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body class="center">
+  <form method="post" class="panel login">
+    <a href="/" class="brand">The Stacks<span>Librarian Login</span></a>
+    {% if error %}<p class="error">{{ error }}</p>{% endif %}
+    <label>Username <input name="username" required autofocus></label>
+    <label>Password <input name="password" type="password" required></label>
+    <button class="btn primary" type="submit">Sign in</button>
+    <p class="muted small">Demo account: admin / admin123</p>
+  </form>
+</body>
+</html>
